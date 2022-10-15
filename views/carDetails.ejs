@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.bundle.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/carDetails-style.css" />
+		<!-- Font Awesome Plugin -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Jquery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="/js/authenticate.js"></script>
+		<!-- Axios -->
+		<script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+	</head>
+	<body>
+		<div class="conts">
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img
+							src="/images/logo.png"
+							alt="Bootstrap"
+							width="100"
+							height="70"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="/find">Find a Car</a>
+							</li>
+							<li class="nav-item border-end">
+								<a class="nav-link" href="/about">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="login-btn"
+									><% if(!user){%>Log In<%}else{%>Log Out<% } %>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<%- include('partials/loginModal') %>
+			<div>
+				<nav class="navbar navbar-expand-lg navbar-custom-2" id="second-navbar">
+					<div class="container-fluid">
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavDropdown">
+							<a id="back-btn"
+								><i class="fa-solid fa-chevron-left"></i> BACK</a
+							>
+							<% if(user){ %>
+							<span class="navbar-text ms-auto">
+								<a class="nav-item" href="/create-new-list" id="new"
+									><i class="fa-solid fa-circle-plus"></i> Add New Listing
+								</a></span
+							>
+							<% } %>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<!-- Map Modal -->
+			<div class="modal fade" id="staticMap" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticMapID" aria-hidden="true">
+				<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+					<h1 class="modal-title fs-5" id="staticMapID"><%=carDetails.Address%></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+					<img id="map" src="" alt="">
+					</div>
+				</div>
+				</div>
+			</div>
+			<div class="row" id="carDetailsContainer">
+				<div class="col-lg-4 col-md-12 bg-light">
+					<div class="card h-100" id="userCard">
+						<div class="card-body-fluid" id="card-title-container">
+							<i class="fa-regular fa-circle-user" id="userIcon"></i>
+							<h5 class="card-title"><%= carDetails.UploadBy %></h5>
+							<% if(user){ %> <% if(user.userName.toString() ===
+							carDetails.UploadBy.toString()){ %>
+							<div class="d-grid gap-2 d-md-block">
+								<form
+									action="/find/cars/<%= carDetails._id %>?_method=DELETE"
+									method="post"
+								>
+									<button class="btn btn-outline-danger btn-sm">Delete</button>
+									<a
+										href="/edit-car-details/<%=carDetails._id%>"
+										class="btn btn-outline-success btn-sm"
+									>
+										Edit
+									</a>
+								</form>
+							</div>
+							<% } %> <% } %>
+						</div>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item">
+								<strong>Address:</strong> <%= carDetails.Address %>
+								<p id="address" style="display: none;"><%= carDetails.Address %></p>
+							</li>
+							<li class="list-group-item">
+								<strong>Date Posted:</strong> <%=
+								String(carDetails.Date).slice(0,15) %>
+							</li>
+							<li class="list-group-item">
+								<strong>Category:</strong>
+								<div class="row" style="margin-left: 5%; text-align: center">
+									<div class="col-lg-4">
+										<strong>Type:</strong> <%= carDetails.Type %>
+									</div>
+									<div class="col-lg-4">
+										<strong>Brand:</strong> <%= carDetails.Brand %>
+									</div>
+									<div class="col-lg-4">
+										<strong>Color:</strong> <%= carDetails.Color %>
+									</div>
+								</div>
+							</li>
+							<li class="list-group-item"><strong>Map:</strong>
+								  <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticMap">
+								View Map
+								</button>
+								</li>
+						</ul>
+						<div
+							class="card-body"
+							id="comment-section"
+							style="position: relative"
+						>
+							<strong>Reviews:</strong>
+							<div id="all-comments">
+								<% if(com.Comments){ %> <%for(comment of com.Comments){%>
+								<li class="list-group-item" style="margin-left: 5%;">
+									<strong><%=comment.author%></strong>: <%=comment.text%>
+								</li>
+								<%}}else{%> Wala <%}%>
+							</div>
+							<form
+								action="/find/cars/<%=carDetails.id%>/comment"
+								method="POST"
+							>
+								<div
+									class="input-group mb-3"
+									style="position: absolute; bottom: 0; width: 94%"
+								>
+									<% if(user){ %>
+									<input
+										type="text"
+										style="display: none"
+										name="author"
+										value="<%= user.userName %>"
+									/>
+									<%}%>
+									<input
+										type="text"
+										class="form-control col-lg-7"
+										name="comment"
+										id="comment"
+										placeholder=""
+									/>
+									<div class="input-group-append">
+										<button
+											class="btn btn-primary"
+											type="submit"
+											style="
+												border-top-left-radius: 0;
+												border-bottom-left-radius: 0;
+											"
+											<%= !user ? 'disabled' : ''; %>
+										>
+											Send
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-8 col-md-12 bg-light">
+					<div class="card h-100" id="carDetails">
+						<img
+							src="/images/<%= carDetails.FileName %>"
+							class="card-img-top mx-auto d-block"
+							alt="..."
+						/>
+						<div class="card-body">
+							<h5 class="card-title" id="carName">
+								<%= carDetails.ListName %>
+							</h5>
+							<p class="card-text"><%= carDetails.Description %></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				console.log(sessionStorage.getItem('url'));
+				console.log($("#user").text());
+				console.log($("#uploader").text());
+				$("#login-btn").on("click", function () {
+					if ($("#login-btn").text().trim() == "Log Out") {
+						window.location = "/signOut";
+					}
+					if ($("#login-btn").text().trim() == "Log In") {
+						window.location = "/login";
+					}
+				});
+				//make the comment section scroll default to the bottom
+				let element = document.getElementById("all-comments");
+				element.scrollTop = element.scrollHeight;
+				//this will solve the issue of going to the post route when using history.back()
+				$("#back-btn").on("click", function (){
+					window.location = sessionStorage.getItem("url");	//back to the '/find' where all filter conditions remains
+				});
+				//Maps API using MapQuest and Axios
+				geocode();
+				function geocode(){
+					let location = $('#address').text() + ',Philippines';
+					axios.get('http://www.mapquestapi.com/geocoding/v1/address',{
+						params:{				
+							key: "OkAlWd8JiA06NGlGhpWJWr17FxN5Xi1P",
+							location: location,
+						}
+					})
+					.then(function(response) {
+						// console.log(response);
+						let lat = response.data.results[0].locations[0].latLng.lat;
+						let lng = response.data.results[0].locations[0].latLng.lng;
+						let latlng = lat + ',' + lng
+						console.log(latlng);
+						$('#map').attr("src", 'https://www.mapquestapi.com/staticmap/v5/map?key=OkAlWd8JiA06NGlGhpWJWr17FxN5Xi1P&center='+ latlng +',&zoom=13&size=385,200@2x&')
+					})
+					.catch(function(error) {
+						console.log(error);
+					});
+				}
+			});
+		</script>
+	</body>
+</html>

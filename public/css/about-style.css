@@ -1,0 +1,81 @@
+body{
+    overflow-x: hidden;
+}
+.conts{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-custom{
+    background-color: #5f43b2;
+    position: absolute;
+    width: 100%;
+}
+    .navbar-custom .navbar-brand {
+        font-weight: bold;
+        color: white;
+        margin-left: 5vw;
+    }
+    nav ul{
+        margin-right: 5vw;
+    }
+    .nav-item a{
+        text-decoration: none;
+        color: #b1aebb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    .nav-item #login-btn{
+        margin-left: 20px;
+        color: black !important;
+    }
+    .active{
+        color: white !important;
+    }
+    .nav-item a:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+.modal {
+    --bs-modal-margin: 12%;
+    --bs-modal-width: 400px;
+}
+#img-container{
+    height: 100%;
+    padding-left: 3%;
+}
+#text-container{
+    height: 100vh;
+    background-color: white;
+    text-align: right;
+    padding-right: 8%;
+    padding-bottom: 40%;
+}
+
+#text-container h3{
+    margin-top: 40%;
+    font-size: 3rem;
+    color: #5f43b2;
+}
+#text-container h1{
+    color: black;
+    font-size: 10rem;
+}
+
+#wallpaper{
+    margin-top: 38%;
+    width: 95%;
+}
+
+#readmore-btn{
+    --bs-btn-color: #5f43b2;
+    --bs-btn-border-color: #5f43b2;
+    --bs-btn-hover-color: #fff;
+    --bs-btn-hover-bg: #5f43b2;
+}

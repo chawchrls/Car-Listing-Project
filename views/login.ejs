@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.bundle.js"></script>
+		<!-- Font Awesome Plugin -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Jquery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+			integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="/js/authenticate.js"></script>
+		<style>
+			.conts {
+				margin: 0;
+				width: 100vw;
+				height: 100vh;
+				background-color: #5f43b2;
+			}
+			.modal {
+				--bs-modal-margin: 12%;
+				--bs-modal-width: 400px;
+			}
+			#error-message {
+				color: red;
+				text-align: center;
+				font-size: 12px;
+				font-style: italic;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="conts">
+			<!-- Log In Modal -->
+			<div
+				class="modal fade"
+				id="logInModal"
+				data-bs-backdrop="static"
+				data-bs-keyboard="false"
+				tabindex="-1"
+				aria-labelledby="staticBackdropLabel"
+				aria-hidden="true"
+			>
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="staticBackdropLabel">Sign In</h1>
+							<button
+								type="button"
+								class="btn-close"
+								data-bs-dismiss="modal"
+								aria-label="Close"
+								id="portal"
+							></button>
+						</div>
+						<div class="modal-body">
+							<form action="/signIn" id="myForm">
+								<div class="mb-3 row">
+									<label
+										for="exampleFormControlInput1"
+										class="col-sm-4 col-form-label"
+										>Username</label
+									>
+									<div class="col-sm-8">
+										<input
+											type="text"
+											class="form-control"
+											id="userName"
+											placeholder="user123"
+											name="userName"
+										/>
+									</div>
+								</div>
+								<div class="mb-3 row">
+									<label for="inputPassword" class="col-sm-4 col-form-label"
+										>Password</label
+									>
+									<div class="col-sm-8">
+										<input
+											type="password"
+											class="form-control"
+											id="password"
+											name="password"
+										/>
+									</div>
+								</div>
+								<div>
+									<p id="error-message"></p>
+								</div>
+								<br />
+								<div class="d-grid gap-2">
+									<button type="button" class="btn btn-primary" id="signIn-btn">
+										Sign In
+									</button>
+									<span style="text-align: center"
+										>No account yet?<a
+											type="button"
+											class="btn btn-link"
+											href="/signup"
+										>
+											Sign Up
+										</a></span
+									>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#logInModal").modal("show");
+				$("#portal").on("click", function () {
+					window.location = "/find";
+				});
+			});
+		</script>
+	</body>
+</html>

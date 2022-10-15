@@ -1,0 +1,121 @@
+html {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8967ee;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1aebb;
+  }
+
+.conts{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-custom{
+    background-color: #5f43b2;
+}
+    .navbar-custom .navbar-brand {
+        font-weight: bold;
+        color: white;
+        margin-left: 5vw;
+    }
+    nav ul{
+        margin-right: 5vw;
+    }
+    .nav-item a{
+        text-decoration: none;
+        color: #b1aebb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    .nav-item #login-btn{
+        margin-left: 20px;
+        color: black !important;
+    }
+    .active{
+        color: white !important;
+    }
+    .nav-item a:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+.navbar-custom-2{
+    background-color: #b1aebb;
+}
+    #second-navbar .nav-item a,
+    #new{
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    #new:hover{
+        text-decoration: underline;
+    }
+
+    .modal {
+        --bs-modal-margin: 12%;
+        --bs-modal-width: 400px;
+}
+
+.cards-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+    #cars-cards {
+        width: 90%;
+    }
+    .col:hover{
+        cursor: pointer;
+    }
+    .card-title{
+        text-align: center;
+        color: #5f43b2;
+    }
+    .footer-custom {
+        background-color: #b1aebb;
+    }
+    .card-footer #author {
+        float: left;
+        text-align: left;
+    }
+    .card-footer #location{
+        float: right;
+        text-align: right;
+    }
+
+     /* Log In CSS */
+     #error-message {
+        color: red;
+        text-align: center;
+        font-size: 12px;
+        font-style: italic;
+    }

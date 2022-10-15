@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.bundle.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/find-style.css" />
+		<!-- Font Awesome Plugin -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Jquery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="/js/authenticate.js"></script>
+	</head>
+	<body>
+		<div class="conts">
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img
+							src="/images/logo.png"
+							alt="Bootstrap"
+							width="100"
+							height="70"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="/find">Find a Car</a>
+							</li>
+							<li class="nav-item border-end">
+								<a class="nav-link" href="/about">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="login-btn"
+									><% if(!user){%>Log In<%}else{%>Log Out<% } %>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<%- include('partials/loginModal') %>
+			<div>
+				<nav class="navbar navbar-expand-lg navbar-custom-2" id="second-navbar">
+					<div class="container-fluid">
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavDropdown">
+							<ul class="navbar-nav">
+								<li class="nav-item">
+									<a class="nav-link disabled" aria-current="page" href="#"
+										>Categories:</a
+									>
+								</li>
+								<li class="nav-item dropdown">
+									<a
+										class="nav-link dropdown-toggle"
+										href="#"
+										role="button"
+										data-bs-toggle="dropdown"
+										aria-expanded="false"
+									>
+										<% if(cartype === "All"){ %> Type <% }else{ %> <%= cartype
+										%> <% } %>
+									</a>
+									<p style="display: none" id="current-type"><%= cartype %></p>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" id="type">All</a></li>
+										<% for (type of types){ %>
+										<li><a class="dropdown-item" id="type"><%= type %></a></li>
+										<% } %>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a
+										class="nav-link dropdown-toggle"
+										href="#"
+										role="button"
+										data-bs-toggle="dropdown"
+										aria-expanded="false"
+									>
+										<% if(carbrand === "All"){ %> Brand <% }else{ %> <%=
+										carbrand %> <% } %>
+									</a>
+									<p style="display: none" id="current-brand">
+										<%= carbrand %>
+									</p>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" id="brand">All</a></li>
+										<% for (brand of brands){ %>
+										<li>
+											<a class="dropdown-item" id="brand"><%= brand %></a>
+										</li>
+										<% } %>
+									</ul>
+								</li>
+								<li class="nav-item dropdown">
+									<a
+										class="nav-link dropdown-toggle"
+										href="#"
+										role="button"
+										data-bs-toggle="dropdown"
+										aria-expanded="false"
+									>
+										<% if(carcolor === "All"){ %> Color <% }else{ %> <%=
+										carcolor %> <% } %>
+									</a>
+									<p style="display: none" id="current-color">
+										<%= carcolor %>
+									</p>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" id="color">All</a></li>
+										<% for (color of colors){ %>
+										<li>
+											<a class="dropdown-item" id="color"><%= color %></a>
+										</li>
+										<% } %>
+									</ul>
+								</li>
+							</ul>
+							<% if(user){ %>
+							<span class="navbar-text ms-auto">
+								<a class="nav-item" href="/create-new-list" id="new"
+									><i class="fa-solid fa-circle-plus"></i> Add New Listing
+								</a></span
+							>
+							<% } %>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<div class="cards-container">
+				<div class="row row-cols-1 row-cols-md-3 g-4" id="cars-cards">
+					<% if(carDetails.length === 0){ %>
+					<div>
+						<h1>Nothing Found.</h1>
+						<h5>
+							Sorry, we couldn't find any post for your search terms. Please try
+							again with other search filters.
+						</h5>
+					</div>
+					<% }else{ %> <% for (let carDetail of carDetails){ %>
+					<div class="col" id="cards">
+						<div class="card h-100">
+							<img
+								src="/images/<%= carDetail.FileName %>"
+								class="card-img-top"
+								alt="..."
+							/>
+							<div class="card-body">
+								<h6 style="display: none"><%= carDetail.id %></h6>
+								<h5 class="card-title"><%= carDetail.ListName %></h5>
+								<p class="card-text"><%= carDetail.Description %></p>
+							</div>
+							<div class="card-footer footer-custom">
+								<span class="text-muted" id="author"
+									><i class="fa-solid fa-user"></i> <%= carDetail.UploadBy
+									%></span
+								>
+								<span class="text-muted" id="location"
+									><i class="fa-solid fa-location-dot"></i> <%=
+									carDetail.Address %></span
+								>
+							</div>
+						</div>
+					</div>
+					<%}}%>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				let Type = $("#current-type").text();
+				let Brand = $("#current-brand").text();
+				let Color = $("#current-color").text();
+				$(document).on("click", "#cards", function () {
+					let id = $("h6", this).text();
+					let url = window.location.href; //save current url
+					sessionStorage.setItem("url", url); //to the sessionStorage so the filter conditions will remain
+					window.location = "/find/cars/" + id;
+				});
+				$("#login-btn").on("click", function () {
+					// console.log($("#login-btn").text());
+					if ($("#login-btn").text().trim() == "Log Out") {
+						window.location = "/signOut";
+					}
+					if ($("#login-btn").text().trim() == "Log In") {
+						// $("#logInModal").modal("show");
+						window.location = "/login";
+					}
+				});
+				$(document).on("click", "#type", function () {
+					Type = $(this).text();
+					window.location =
+						"/find/filter-list?Type=" +
+						Type +
+						"&Brand=" +
+						Brand +
+						"&Color=" +
+						Color;
+				});
+				$(document).on("click", "#brand", function () {
+					Brand = $(this).text();
+					window.location =
+						"/find/filter-list?Type=" +
+						Type +
+						"&Brand=" +
+						Brand +
+						"&Color=" +
+						Color;
+				});
+				$(document).on("click", "#color", function () {
+					Color = $(this).text();
+					window.location =
+						"/find/filter-list?Type=" +
+						Type +
+						"&Brand=" +
+						Brand +
+						"&Color=" +
+						Color;
+				});
+			});
+		</script>
+	</body>
+</html>

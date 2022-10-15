@@ -1,0 +1,132 @@
+html {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8967ee;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1aebb;
+  }
+
+.conts{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-custom{
+    background-color: #5f43b2;
+}
+    .navbar-custom .navbar-brand {
+        font-weight: bold;
+        color: white;
+        margin-left: 5vw;
+    }
+    nav ul{
+        margin-right: 5vw;
+    }
+    .nav-item a{
+        text-decoration: none;
+        color: #b1aebb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    .nav-item #login-btn{
+        margin-left: 20px;
+        color: black !important;
+    }
+    .active{
+        color: white !important;
+    }
+    .nav-item a:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+.modal {
+    --bs-modal-margin: 12%;
+    --bs-modal-width: 400px;
+}
+.navbar-custom-2{
+    background-color: #b1aebb;
+}
+    #back-btn, 
+    #new{
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 2vw;
+        cursor: pointer;
+    }
+    #new:hover{
+        text-decoration: underline;
+    }
+#carDetailsContainer{
+    --bs-gutter-x: 0;
+    margin: 0;
+}
+    #userCard{
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        --bs-card-border-color: black;
+    }
+        #userIcon{
+            font-size: 400%;
+        }
+        #card-title-container{
+            margin: 1rem 0 1rem 1rem;
+        }
+    #carDetails{
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        padding-bottom: 10px;
+    }
+    #all-comments{
+        overflow-y: scroll;
+        height: 133px;
+        margin-bottom: 50px;
+        /* display: flex;
+        flex-direction: column-reverse; */
+    }
+    #carDetails img{
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        border-radius: 10px;
+        margin-top: 10px;
+    }
+    #carName{
+        text-align: center;
+        color: #5f43b2;
+    }
+    
+ /* Log In CSS */
+ #error-message {
+    color: red;
+    text-align: center;
+    font-size: 12px;
+    font-style: italic;
+}

@@ -1,0 +1,163 @@
+html {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8967ee;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1aebb;
+  }
+
+.conts{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.navbar-custom{
+    background-color: #5f43b2;
+}
+    .navbar-custom .navbar-brand {
+        font-weight: bold;
+        color: white;
+        margin-left: 5vw;
+    }
+    nav ul{
+        margin-right: 5vw;
+    }
+    .nav-item a{
+        text-decoration: none;
+        color: #b1aebb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    .nav-item #login-btn{
+        margin-left: 20px;
+        color: black !important;
+    }
+    .active{
+        color: white !important;
+    }
+    .nav-item a:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+
+    .modal {
+        --bs-modal-margin: 12%;
+        --bs-modal-width: 400px;
+}
+
+#signUpContainer{
+    width: 70%;
+}
+    .row #left{
+        margin: 0;
+        padding: 0;
+    }
+    .row #right{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .forms{
+        width: 80%;
+        height: 80%;
+        margin-bottom: 50px;
+    }
+    form .txt_field{
+        position: relative;
+        border-bottom: 2px solid #adadad;
+        margin: 37px 0;
+    }
+    
+    .txt_field input{
+        width: 100%;
+        padding: 0 px;
+        height: 40px;
+        font-size: 16px;
+        border: none;
+        background: none;
+        outline: none;
+        text-align: left !important;
+    }
+    .txt_field span::before{
+        content: '' ;
+        position: relative;
+        top: 40px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #8967ee;
+        transition: .5s;
+    }
+
+    .txt_field label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        color: #adadad;
+        transform: translateY(-50%);
+        font-size: 16px;
+        pointer-events: none;
+        transition: .5s;
+    }
+    .txt_field input:focus ~ label,
+    .txt_field input:valid ~ label{
+        top: -5px;
+        color: #8967ee;
+    }
+    
+    .txt_field input:focus ~ span::before,
+    .txt_field input:valid ~ span::before{
+        width: 100%;
+    }
+
+
+    .btn-custom{
+        background-color: #8967ee;
+        font-weight: bold;
+        color: white;
+    }
+    .btn-custom:hover{
+        background-image: linear-gradient(to right, #8967ee , #b8a9e8);
+    }
+
+    .error{
+        display: block !important;
+        width: 100%;
+        font-size: 12px !important;
+        color: red !important;
+        margin-bottom: 0;
+        text-align: right !important;
+        z-index: 1;
+    }
+    
+
+    /* Log In CSS */
+    #error-message {
+        color: red;
+        text-align: center;
+        font-size: 12px;
+        font-style: italic;
+    }

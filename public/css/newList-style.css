@@ -1,0 +1,149 @@
+html {
+    overflow-y: scroll;
+    overflow-y: overlay;
+  }
+/* scrollbar */
+  /* width */
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #8967ee;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b1aebb;
+  }
+
+.conts{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 40px;
+}
+
+.navbar-custom{
+    background-color: #5f43b2;
+}
+    .navbar-custom .navbar-brand {
+        font-weight: bold;
+        color: white;
+        margin-left: 5vw;
+    }
+    nav ul{
+        margin-right: 5vw;
+    }
+    .nav-item a{
+        text-decoration: none;
+        color: #b1aebb;
+        padding: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    .nav-item #login-btn{
+        margin-left: 20px;
+        color: black !important;
+    }
+    .active{
+        color: white !important;
+    }
+    .nav-item a:hover{
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration-color: black;
+        text-decoration-thickness: 5px;
+        text-underline-offset: 10px;
+    }
+.modal {
+    --bs-modal-margin: 12%;
+    --bs-modal-width: 400px;
+}
+.navbar-custom-2{
+    background-color: #b1aebb;
+}
+    #back-btn, 
+    #new{
+        text-decoration: none;
+        color: black;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        margin-right: 2vw;
+    }
+    #new:hover{
+        text-decoration: underline;
+    }
+
+#newListContainer{
+        width: 80%;
+    }
+    .row #left{
+        margin: 0;
+        padding: 0;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        padding-top: 5%;
+    }
+        .image-area {
+            border: 2px dashed rgba(166, 0, 255, 0.281);
+            padding: 1rem;
+            position: relative;
+            background-color: #ecf0f7;
+            width: 90%;
+            min-height: 300px;
+            height: auto;
+            margin-left: 5%;
+        }
+            .image-area::before {
+                content: 'Uploaded image result';
+                color: black;
+                font-weight: bold;
+                text-transform: uppercase;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 0.8rem;
+                z-index: 1;
+            }
+            .image-area img {
+                z-index: 2;
+                position: relative;
+                width: 100%;
+            }
+    .row #right{
+       display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 20px;
+    }
+    .forms{
+        width: 95%;
+        height: 80%;
+        margin-bottom: 50px;
+    }
+    .form-control:focus {
+        border-color: #8967ee;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(239, 57, 255, 0.6);
+    }
+    .form-check-input:checked {
+        background-color: #8967ee;
+        border-color: #8967ee;
+    }
+    .btn-custom{
+        background-color: #8967ee;
+        font-weight: bold;
+        color: white;
+    }
+    .btn-custom:hover{
+        background-image: linear-gradient(to right, #8967ee , #b8a9e8);
+    }

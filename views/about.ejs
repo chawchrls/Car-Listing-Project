@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<script src="/js/bootstrap.min.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/about-style.css" />
+		<!-- Jquery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script src="/js/authenticate.js"></script>
+	</head>
+	<body>
+		<div class="conts">
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img
+							src="/images/logo.png"
+							alt="Bootstrap"
+							width="100"
+							height="70"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/find">Find a Car</a>
+							</li>
+							<li class="nav-item border-end">
+								<a class="nav-link active" href="/about">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="login-btn"
+									><% if(!user){%>Log In<%}else{%>Log Out<% } %>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div id="about-container">
+				<div class="row">
+					<div class="col-lg-7 col-md-12" id="img-container">
+						<img
+							class="d-inline"
+							src="/images/Daniel_Swervez.png"
+							alt=""
+							id="wallpaper"
+						/>
+					</div>
+					<div class="col-lg-5 col-md-12" id="text-container">
+						<h3>CHARLS?</h3>
+						<h1>CARS!</h1>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
+							quidem assumenda praesentium expedita, culpa doloremque. Non
+							sapiente illum placeat quod?
+						</p>
+						<button class="btn btn-outline-success" id="readmore-btn">
+							Read More
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				$("#login-btn").on("click", function () {
+					console.log($("#login-btn").text());
+					if ($("#login-btn").text().trim() == "Log Out") {
+						window.location = "/signOut";
+					}
+					if ($("#login-btn").text().trim() == "Log In") {
+						window.location = "/login";
+					}
+				});
+				$("#readmore-btn").on("click", function () {
+					if ($("h1").text() === "CARS!") {
+						$("h1").text("CLICK!");
+						$("h3").text("It's a prank");
+						$("#readmore-btn").text("Click Again");
+					} else {
+						$("h1").text("CARS!");
+						$("h3").text("CHARLS?");
+						$("#readmore-btn").text("Read More");
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

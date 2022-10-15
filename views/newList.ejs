@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.bundle.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/newList-style.css" />
+		<!-- Font Awesome Plugin -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Jquery -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous"></script>
+		<script src="/js/image.js"></script>
+	</head>
+	<body>
+		<div class="conts">
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img
+							src="/images/logo.png"
+							alt="Bootstrap"
+							width="100"
+							height="70"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active" href="/find">Find a Car</a>
+							</li>
+							<li class="nav-item border-end">
+								<a class="nav-link" href="/about">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="login-btn"
+									><% if(!user){%>Log In<%}else{%>Log Out<% } %>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<div>
+				<nav class="navbar navbar-expand-lg navbar-custom-2" id="second-navbar">
+					<div class="container-fluid">
+						<button
+							class="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarNavDropdown"
+							aria-controls="navbarNavDropdown"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarNavDropdown">
+							<a href="/find" id="back-btn"
+								><i class="fa-solid fa-chevron-left"></i> BACK</a
+							>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<br>
+			<div class="container" id="newListContainer">
+				<div class="row">
+					<div class="col-lg-6 col-md-12 bg-light" id="left">
+						<!-- Uploaded image area-->
+					<div class="image-area mt-4">
+						<img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block">
+					</div>
+					</div>
+					<div class="col-lg-6 col-md-12 bg-light" id="right">
+						<div class="forms bg-light">
+							<h3>Create New List</h3>
+							<br />
+							<form action="/adding-new-list" method="POST" enctype="multipart/form-data" >
+								<div class="mb-3">
+									<% if(typeof msg != 'undefined'){ %> 
+										<p style="color: red; font-size: 12px; font-style: italic;"><%= 
+											msg %> </p>
+										<% } %> 
+									<label for="car-img" class="form-label" id="car-img-label">Car Image</label>
+									<input class="form-control" type="file" id="car-img" name="car-img" onchange="readURL(this);">
+								  </div>
+								  <div style="display: none;">
+									<input type="text" class="form-control" id="uploader" name="UploadBy" value="<%= user.userName %>">
+								  </div>
+								 <div class="mb-3">
+									<label for="listTitle" class="form-label">List Title</label>
+									<input type="text" class="form-control" id="listTitle" name="ListName" required>
+								  </div>
+								  <div class="mb-3">
+									<label for="Address" class="form-label">Address</label>
+									<input type="text" class="form-control" id="Address" name="Address" >
+								  </div>
+								  <div class="mb-3">
+									<label for="Description" class="form-label">Description</label>
+									<textarea class="form-control" id="Description" rows="3" name="Description"></textarea>
+								  </div>
+								<div>
+									<label>Categories</label>
+									<div>
+										<label>Type: </label>
+										<br>
+										<% for(type of types){ %> 
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="Type" id="inlineRadioA1" value="<%= type %>">
+												<label class="form-check-label" for="inlineRadioA1"><%= type %></label>
+											</div>
+											<% } %> 
+									</div>
+									<div>
+										<label>Brand: </label>
+										<br>
+										<% for(brand of brands){ %> 
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="Brand" id="inlineRadioB1" value="<%= brand %>">
+												<label class="form-check-label" for="inlineRadioB1"><%= brand %></label>
+											</div>
+											<% } %> 
+
+									</div>
+									<div>
+										<label>Color: </label>	
+										<br>
+										<% for(color of colors){ %> 
+										<div class="form-check form-check-inline">
+											<input class="form-check-input" type="radio" name="Color" id="inlineRadioC1" value="<%= color %>">
+											<label class="form-check-label" for="inlineRadioC1"><%= color %></label>
+										</div>
+										<% } %> 
+									</div>
+								</div>
+								<br>
+								<div class="d-grid gap-2">
+									<input
+										type="submit"
+										value="SUBMIT"
+										name="submit"
+										class="btn btn-custom"
+									/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+		</div>
+		<script>
+			$(document).ready(function () {
+				$("#login-btn").on("click", function () {
+					if ($("#login-btn").text().trim() == "Log Out") {
+						window.location = "/signOut";
+					}
+					if ($("#login-btn").text().trim() == "Log In") {
+						window.location = "/login";
+					}
+				});
+			});
+		</script>
+	</body>
+</html>

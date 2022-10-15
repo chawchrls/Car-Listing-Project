@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>cHarLs</title>
+
+		<!-- BootStrap links -->
+		<link rel="stylesheet" href="/css/bootstrap.min.css" />
+		<!-- <script src="/js/bootstrap.min.js"></script> -->
+		<script src="/js/bootstrap.bundle.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="/css/signup-style.css" />
+		<!-- Font Awesome Plugin -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+			integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+		<!-- Jquery -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+			integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"
+			integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		></script>
+	</head>
+	<body>
+		<div class="conts">
+			<nav class="navbar navbar-expand-lg navbar-custom">
+				<div class="container-fluid">
+					<a class="navbar-brand" href="#">
+						<img
+							src="/images/logo.png"
+							alt="Bootstrap"
+							width="100"
+							height="70"
+						/>
+					</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNav"
+						aria-controls="navbarNav"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNav">
+						<ul class="navbar-nav ms-auto">
+							<li class="nav-item">
+								<a class="nav-link" aria-current="page" href="/">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="/find">Find a Car</a>
+							</li>
+							<li class="nav-item border-end">
+								<a class="nav-link" href="/about">About</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="login-btn" href="/login">Log In</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<br />
+
+			<div class="container" id="signUpContainer">
+				<div class="row">
+					<div class="col-lg-5 col-md-12" id="left">
+						<img
+							src="/images/pexels-olena-bohovyk-3834287.jpg"
+							class="d-inline-block w-100"
+							alt=""
+							id="picture"
+						/>
+					</div>
+					<br />
+					<div class="col-lg-7 col-md-12 bg-light" id="right">
+						<div class="forms bg-light">
+							<h3>Sign Up to use all features of website.</h3>
+							<form action="/creating-account" method="POST" id="myForm">
+								<div class="txt_field">
+									<input type="text" name="fName" id="fName" required />
+									<label>First Name</label>
+									<span></span>
+								</div>
+								<div class="txt_field">
+									<input type="text" name="lName" id="lName" required />
+									<label>Last Name</label>
+									<span></span>
+								</div>
+								<div class="txt_field">
+									<input type="text" name="userName" id="userName" required />
+									<label>Username</label>
+									<label class="error"></label>
+									<span></span>
+								</div>
+								<div class="txt_field">
+									<input
+										type="password"
+										name="password"
+										id="password"
+										required
+									/>
+									<label>Password</label>
+									<span></span>
+								</div>
+								<div class="txt_field">
+									<input
+										type="password"
+										name="confirmPass"
+										id="confirmPass"
+										required
+									/>
+									<label>Confirm Password</label>
+									<span></span>
+								</div>
+								<div class="d-grid gap-2">
+									<input
+										type="submit"
+										value="SUBMIT"
+										name="submit"
+										class="btn btn-custom"
+										id="btn-submit"
+									/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				//check if username is already exists
+				$("#userName").on("keyup", function () {
+					// console.log($(this).val());
+					$.get("/user-check?userName=" + $(this).val(), function (response) {
+						let msg = response.message;
+						//console.log(msg);
+						var button = document.getElementById("btn-submit");
+						if (msg === "user exists") {
+							$(".error").text("Username is already taken");
+							button.disabled = true;
+						} else {
+							$(".error").text("");
+							button.disabled = false;
+						}
+					});
+				});
+				//jquery validation
+				$("#btn-submit").on("click", function () {
+					$("#myForm").validate({
+						rules: {
+							password: {
+								required: true,
+								minlength: 6,
+							},
+
+							confirmPass: {
+								required: true,
+								equalTo: "#password",
+								minlength: 6,
+							},
+						},
+						messages: {
+							password: {
+								required: "Your password is invalid",
+								minlength: "Your password is too short",
+							},
+							confirmPass: {
+								required: "Re-type your password",
+								equalTo: "Password does not match",
+								minlength: "Your password is too short",
+							},
+						},
+					});
+					if ($("#myForm").valid()) {
+						if (flag == true) {
+							$("#myForm").submit();
+						}
+					}
+				});
+			});
+		</script>
+	</body>
+</html>
